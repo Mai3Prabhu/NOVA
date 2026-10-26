@@ -1,12 +1,5 @@
 import { useHealthStatus } from "../hooks/useHealthStatus.js";
 
-const NAV_LINKS = [
-  { href: "#home", label: "HOME" },
-  { href: "#how-it-works", label: "HOW IT WORKS" },
-  { href: "#examples", label: "EXAMPLES" },
-  { href: "#about", label: "ABOUT" },
-];
-
 export default function Header() {
   const online = useHealthStatus();
 
@@ -24,14 +17,6 @@ export default function Header() {
         <span className="brand-name">NOVA_001</span>
         <span className="brand-sub">/ AI DOCUMENT AGENT</span>
       </a>
-
-      <nav className="site-nav" aria-label="Primary">
-        {NAV_LINKS.map((link) => (
-          <a key={link.href} href={link.href}>
-            {link.label}
-          </a>
-        ))}
-      </nav>
 
       <div
         className={`status-pill status-pill--${online === null ? "checking" : online ? "online" : "offline"}`}

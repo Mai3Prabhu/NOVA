@@ -1,6 +1,6 @@
 <div align="center">
 
-# NOVA — Autonomous Document Agent
+# NOVA - Autonomous Document Agent
 
 **Describe it. NOVA plans it. NOVA builds it.**
 

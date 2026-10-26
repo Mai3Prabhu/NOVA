@@ -1,0 +1,136 @@
+:root {
+  --bg: #05060d;
+  --bg-raised: #0b0e1b;
+  --periwinkle: #5b7fff;
+  --periwinkle-bright: #8aa3ff;
+  --cyan: #4deeff;
+  --panel-bg: rgba(12, 15, 27, 0.6);
+  --panel-bg-solid: #0c0f1d;
+  --panel-border: rgba(124, 155, 255, 0.22);
+  --panel-border-bright: rgba(138, 163, 255, 0.55);
+  --text-primary: #eef1fb;
+  --text-secondary: #a7aec8;
+  --text-muted: #666c8c;
+  --success: #6df2c4;
+  --error: #ff7a93;
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-pixel: "Silkscreen", "Space Grotesk", monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-serif: "Fraunces", Georgia, serif;
+  --radius-sm: 3px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --glow-cyan: 0 0 1.5rem rgba(77, 238, 255, 0.3);
+  --glow-blue: 0 0 2rem rgba(91, 127, 255, 0.32);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+textarea,
+input,
+button {
+  accent-color: var(--periwinkle);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: rgba(77, 238, 255, 0.3);
+  color: var(--text-primary);
+}
+
+/* ---- animated dotted grid backdrop ---- */
+
+.grid-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(91, 127, 255, 0.1), transparent 55%),
+    radial-gradient(circle at 82% 68%, rgba(77, 238, 255, 0.08), transparent 50%),
+    radial-gradient(rgba(124, 155, 255, 0.35) 1px, transparent 1.4px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    34px 34px;
+  background-position:
+    0 0,
+    0 0,
+    0 0;
+  animation: drift-grid 70s linear infinite;
+}
+
+@keyframes drift-grid {
+  to {
+    background-position:
+      0 0,
+      0 0,
+      340px 170px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-backdrop {
+    animation: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid-backdrop {
+    background-size:
+      100% 100%,
+      100% 100%,
+      26px 26px;
+  }
+}

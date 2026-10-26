@@ -1,0 +1,162 @@
+.robot-stage {
+  position: relative;
+  width: min(380px, 78vw);
+  margin-inline: auto;
+}
+
+.robot-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: robot-float 5.6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes robot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.robot-eye {
+  animation: robot-blink 5.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.robot-eye--right {
+  animation-delay: 0.06s;
+}
+
+@keyframes robot-blink {
+  0%,
+  88%,
+  100% {
+    transform: scaleY(1);
+  }
+  93% {
+    transform: scaleY(0.08);
+  }
+}
+
+.robot-core,
+.robot-light,
+.robot-antenna-tip {
+  animation: robot-breathe 3.1s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes robot-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.robot-stage.is-active .robot-core,
+.robot-stage.is-active .robot-light,
+.robot-stage.is-active .robot-antenna-tip {
+  animation-name: robot-pulse-fast;
+  animation-duration: 0.85s;
+}
+
+@keyframes robot-pulse-fast {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+}
+
+.robot-stage.is-active .robot-eye {
+  animation-duration: 2.4s;
+}
+
+.robot-stage.is-success .robot-svg {
+  animation: robot-success-pulse 1.1s var(--ease) 1;
+}
+
+@keyframes robot-success-pulse {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.07) translateY(-14px);
+  }
+  58% {
+    transform: scale(0.97) translateY(-4px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---- helper robots ---- */
+
+.helper-robot {
+  position: absolute;
+  width: 15%;
+  min-width: 42px;
+  opacity: 0;
+  transform: scale(0.45) translateY(14px);
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
+  pointer-events: none;
+}
+
+.helper-robot.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.helper-robot--left {
+  left: -8%;
+  top: 58%;
+}
+.helper-robot--right {
+  right: -8%;
+  top: 48%;
+}
+.helper-robot--top {
+  left: 50%;
+  top: -6%;
+  transform: translateX(-50%) scale(0.45) translateY(14px);
+}
+.helper-robot--top.is-visible {
+  transform: translateX(-50%) scale(1) translateY(0);
+}
+
+.helper-eye {
+  fill: #4deeff;
+  animation: robot-breathe 3.1s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.helper-core {
+  fill: #5b7fff;
+  animation: robot-pulse-fast 1.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robot-svg {
+    animation: none;
+  }
+  .robot-stage.is-success .robot-svg {
+    animation: none;
+  }
+}

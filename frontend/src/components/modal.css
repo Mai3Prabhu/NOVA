@@ -1,0 +1,116 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(5, 6, 13, 0.78);
+  backdrop-filter: blur(4px);
+  animation: modal-fade-in 0.18s var(--ease);
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(760px, 100%);
+  max-height: 86vh;
+  padding: 0;
+  overflow: hidden;
+  background: var(--panel-bg-solid);
+  border-color: var(--panel-border-bright);
+  box-shadow: var(--glow-blue);
+  animation: modal-pop-in 0.22s var(--ease);
+}
+
+@keyframes modal-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal-head {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: 1px solid var(--panel-border-bright);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+.modal-close:hover,
+.modal-close:focus-visible {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.1rem 1.25rem;
+}
+
+.modal-status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.modal-status--error {
+  color: var(--error);
+}
+
+.modal-footer {
+  flex-shrink: 0;
+  padding: 0.9rem 1.25rem 1.1rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+/* The document itself keeps its real, white "paper" look - it's the actual
+   .docx content, not restyled to fit the dark theme - while the surrounding
+   chrome (header/footer/buttons above) matches the rest of the app. */
+.docx-preview-container {
+  background: #d9dbe4;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 0;
+}
+.docx-preview-container .docx-wrapper {
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0.75rem;
+  }
+  .modal-panel {
+    max-height: 92vh;
+  }
+}
